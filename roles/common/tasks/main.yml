@@ -7,7 +7,7 @@
 - name: Determine if iptables-services installed
   command: "rpm -q iptables-services"
   register: has_iptables
-  failed_when: "'package iptables-services is not installed' not in has_iptables.stdout and has_iptables.rc != 0"
+  failed_when: "'iptables-services' not in has_iptables.stdout and has_iptables.rc != 0"
   changed_when: false
   
 - name: stop iptables
