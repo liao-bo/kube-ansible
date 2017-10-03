@@ -10,7 +10,7 @@
   failed_when: "'package iptables-services is not installed' not in has_iptables.stdout and has_iptables.rc != 0"
   changed_when: false
   
-- name:stop iptables
+- name: stop iptables
   service: name=iptables state=stopped enable=no
   when: has_iptables.rc == 0
   
