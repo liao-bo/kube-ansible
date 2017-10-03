@@ -5,10 +5,7 @@
   templates: src=apiserver_conf.j2 dest=/etc/kubernetes/apiserver
   notify:
      - init etcd
-- name: config flanneld
-  templates: src=flanneld_conf.js dest=/etc/sysconfig/foanneld
-  notify:
-    - restart daemons
+     - restart master daemons
 
 
 
