@@ -11,7 +11,7 @@
 - name: create etcd network configuration
   command: etcdctl mk {{ etcd_data_fold }}/network/config "{ \"Network\": \"{{ etcd_network }}\", \"SubnetLen\": 24, \"Backend\": { \"Type\": \"vxlan\" } }"
     
-- name: restart daemons
+- name: restart master daemons
   command: /bin/true
   notify: 
       -restart kube-apiserver
