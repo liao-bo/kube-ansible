@@ -1,0 +1,31 @@
+---
+- name: restart node daemons
+  command: /bin/bash
+  notify: 
+      -restart kube-proxy
+      -restart kubelet
+      -restart flanneld
+      -restart docker
+- name: restart kube-proxy
+  service: name=kube-proxy state=restarted enable=yes
+
+- name: restart kubelet
+  service: name=kubelet state=restarted enable=yes
+
+- name: restart flanneld
+  service: name=flanneld state=restarted enable=yes
+
+- name: restart docker
+  service: name=docker start=restarted enable=yes
+
+- name: configure kubectl
+  command: kubectl config set-cluster default-cluster --server=http://{{ master_ip_address }}:8080
+  notify:
+    - config default context
+    - apply default context
+
+- name: config default context
+  command: kubectl config set-context default-context --cluster=default-cluster --user=default-admin
+  notify:
+- name: apply default context
+  command: kubectl config use-context default-context

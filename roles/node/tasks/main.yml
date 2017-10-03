@@ -4,13 +4,3 @@
   notify: 
     - restart node daemons
     - configure kubectl
-- name: configure kubectl
-  command: kubectl config set-cluster default-cluster --server=http://{{ master-ip-address }}:8080
-  notify:
-    - config default context
-- name: config default context
-  command: kubectl config set-context default-context --cluster=default-cluster --user=default-admin
-  notify:
-    - apply default context
-- name: apply default context
-  command: kubectl config use-context default-context
