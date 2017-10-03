@@ -16,7 +16,7 @@
   
   
 - name: install kubernetes
-  yum: name=kubernetes state=latest enablerepo=virt7-docker-common-release
+  yum: name=kubernetes state=latest enablerepo=virt7-docker-common-release update_cache=yes
 
 - name: install etcd 
   yum: name=etcd state=latest enablerepo=virt7-docker-common-release
