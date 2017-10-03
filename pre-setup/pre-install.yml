@@ -13,7 +13,7 @@
     command: sed -i "s/GSSAPIAuthentication yes/GSSAPIAuthentication no/g" /etc/ssh/ssh_config
     notify:
       - restart sshd
-  handlers
+  handlers:
   - name: restart sshd
     service: name=sshd state=restarted enabled=yes
   
