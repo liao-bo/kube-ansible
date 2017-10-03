@@ -1,0 +1,3 @@
+---
+- name: config kubelet
+  template: src=kubelet_conf.j2 desk=/etc/kubernetes/kubelet
