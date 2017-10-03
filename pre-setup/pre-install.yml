@@ -1,0 +1,15 @@
+
+#install kubenet yum source and iptable
+---
+- hosts: all
+  tasks:
+  - name: insall kubenete-source
+    copy: src=./virt7-docker-common-release.repo dest=/etc/yum.repos.d owner=root group=root mode=0644 owner=root group=root mode=0644
+  - name: config sshd
+    command: sed -i "s/GSSAPIAuthentication yes/GSSAPIAuthentication no/g" /etc/ssh/sshd_config
+  - name: config ssh
+    command: sed -i "s/GSSAPIAuthentication yes/GSSAPIAuthentication no/g" /etc/ssh/ssh_config
+  - name: restart sshd
+    service: name=sshd state=restarted enabled=yes
+  - name: stop iptables
+    service: name=iptables state=stopped enabled=no

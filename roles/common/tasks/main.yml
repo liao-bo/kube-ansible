@@ -1,0 +1,16 @@
+---
+- name: Set IP address variables
+  set_fact:
+    master_ip_address: "{{ hostvars[groups['masters'][0]]['ansible_default_ipv4']['address'] }}"
+    etcd_ip_address: "{{ hostvars[groups['etcd'][0]]['ansible_default_ipv4']['address'] }}"
+- name: install kubernetes
+  yum: name=kubernetes state=latest enablerepo=virt7-docker-common-release
+
+- name: install etcd 
+  yum: name=etcd state=latest enablerepo=virt7-docker-common-release
+- name: install flannel
+  yum: name=flannel state=latest enablerepo=virt7-docker-common-release
+- name: create /etc/hosts
+  template: src=hosts.j2 dest=/etc/hosts
+- name: write the global config file
+  template: src=config.j2 dest=/etc/kubernetes/config

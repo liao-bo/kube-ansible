@@ -1,0 +1,31 @@
+---
+- name: init etcd
+  notify:
+    - restart etcd
+    - mkdir etcd network fold
+    - create etcd network configuration
+- name: restart etcd
+  service: name=etcd state=restarted
+- name: mkdir etcd network fold
+  command: etcdctl mkdir {{ etcd_data_fold }}/network
+- name: create etcd network configuration
+  command: etcdctl mk {{ etcd_data_fold }}/network/config "{ \"Network\": \"{{ etcd_network }}\", \"SubnetLen\": 24, \"Backend\": { \"Type\": \"vxlan\" } }"
+    
+- name: restart daemons
+  command: /bin/true
+  notify: 
+      -restart kube-apiserver
+      -restart kube-controller-manager
+      -restart kube-scheduler
+      -restart flanneld
+- name: restart apiserver
+  service: name=kube-apiserver state=restarted enable=yes
+
+- name: restart controller-manager
+  service: name=kube-controller-manager state=restarted enable=yes
+
+- name: restart scheduler
+  service: name=kube-scheduler state=restarted enable=yes
+
+- name: restart flanneld
+  service: name=flanneld state=restarted enable=yes
