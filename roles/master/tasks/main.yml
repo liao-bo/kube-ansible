@@ -1,8 +1,8 @@
 ---
 - name: config etcd in master
-  templates: src=etcd_conf.j2 dest=/etc/etcd/etcd/conf
+  template: src=etcd_conf.j2 dest=/etc/etcd/etcd/conf
 - name: config apiserver in master
-  templates: src=apiserver_conf.j2 dest=/etc/kubernetes/apiserver
+  template: src=apiserver_conf.j2 dest=/etc/kubernetes/apiserver
   notify:
      - init etcd
      - restart master daemons
