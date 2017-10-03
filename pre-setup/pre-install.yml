@@ -17,3 +17,6 @@
   - name: restart sshd
     service: name=sshd state=restarted enabled=yes
   
+- hosts: minions
+  - name change all node hostname
+    hostname : name=kube-node{{ ansible_default_ipv4.address.split('.')[-1] }}
