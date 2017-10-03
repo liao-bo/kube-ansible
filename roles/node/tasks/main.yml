@@ -1,6 +1,6 @@
 ---
 - name: config kubelet
-  template: src=kubelet_conf.j2 desk=/etc/kubernetes/kubelet
+  template: src=kubelet_conf.j2 dest=/etc/kubernetes/kubelet
   notify: 
     - restart node daemons
     - configure kubectl

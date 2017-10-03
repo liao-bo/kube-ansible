@@ -1,5 +1,6 @@
 ---
 - name: init etcd
+  command: /bin/bash
   notify:
     - restart etcd
     - mkdir etcd network fold
@@ -8,8 +9,9 @@
   service: name=etcd state=restarted
 - name: mkdir etcd network fold
   command: etcdctl mkdir {{ etcd_data_fold }}/network
+
 - name: create etcd network configuration
-  command: etcdctl mk {{ etcd_data_fold }}/network/config "{ \"Network\": \""{{ etcd_network }}"\", \"SubnetLen\": 24, \"Backend\": { \"Type\": \"vxlan\" } }"
+  command: etcdctl mk {{ etcd_data_fold }}/network/config {{ etcd_network_config_js }}
     
 - name: restart master daemons
   command: /bin/true
