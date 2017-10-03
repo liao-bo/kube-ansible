@@ -3,6 +3,18 @@
   set_fact:
     master_ip_address: "{{ hostvars[groups['masters'][0]]['ansible_default_ipv4']['address'] }}"
     etcd_ip_address: "{{ hostvars[groups['etcd'][0]]['ansible_default_ipv4']['address'] }}"
+    
+- name: Determine if iptables-services installed
+  command: "rpm -q iptables-services"
+  register: has_iptables
+  failed_when: "'package iptables-services is not installed' not in has_iptables.stdout and has_iptables.rc != 0"
+  changed_when: false
+  
+- name:stop iptables
+  service: name=iptables state=stopped enable=no
+  when: has_iptables.rc == 0
+  
+  
 - name: install kubernetes
   yum: name=kubernetes state=latest enablerepo=virt7-docker-common-release
 
