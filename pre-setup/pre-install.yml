@@ -20,4 +20,9 @@
 - hosts: minions
   tasks:
   - name: change all node hostname
-    hostname : name=kube-node{{ ansible_default_ipv4.address.split('.')[-1] }}
+    hostname: name=kube-node{{ ansible_default_ipv4.address.split('.')[-1] }}
+    
+- hosts: masters
+  tasks:
+  - name: change master hostname
+    hostname: name=kube-master{{ ansible_default_ipv4.address.split('.')[-1] }}
