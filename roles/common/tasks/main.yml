@@ -15,4 +15,4 @@
 - name: write the global config file
   template: src=config.j2 dest=/etc/kubernetes/config
 - name: config flanneld
-  template: src=flanneld_conf.j2 dest=/etc/sysconfig/foanneld
+  template: src=flanneld_conf.j2 dest=/etc/sysconfig/flanneld
