@@ -3,3 +3,11 @@
   become: yes
   roles: 
        - common
+- hosts: masters
+  become: yes
+  roles:
+       - master
+- hosts: minions 
+  become: yes
+  roles:
+       - node
