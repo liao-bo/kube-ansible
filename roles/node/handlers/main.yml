@@ -7,16 +7,16 @@
       -restart flanneld
       -restart docker
 - name: restart kube-proxy
-  service: name=kube-proxy state=restarted enable=yes
+  service: name=kube-proxy state=restarted enabled=yes
 
 - name: restart kubelet
-  service: name=kubelet state=restarted enable=yes
+  service: name=kubelet state=restarted enabled=yes
 
 - name: restart flanneld
-  service: name=flanneld state=restarted enable=yes
+  service: name=flanneld state=restarted enabled=yes
 
 - name: restart docker
-  service: name=docker start=restarted enable=yes
+  service: name=docker start=restarted enabled=yes
 
 - name: configure kubectl
   command: kubectl config set-cluster default-cluster --server=http://{{ master_ip_address }}:8080
