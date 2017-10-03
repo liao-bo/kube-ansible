@@ -16,10 +16,10 @@
 - name: restart master daemons
   command: /bin/true
   notify: 
-      -restart kube-apiserver
-      -restart kube-controller-manager
-      -restart kube-scheduler
-      -restart flanneld
+      - restart kube-apiserver
+      - restart kube-controller-manager
+      - restart kube-scheduler
+      - restart flanneld
 - name: restart apiserver
   service: name=kube-apiserver state=restarted enabled=yes
 
