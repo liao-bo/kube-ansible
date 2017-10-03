@@ -21,13 +21,13 @@
       -restart kube-scheduler
       -restart flanneld
 - name: restart apiserver
-  service: name=kube-apiserver state=restarted enable=yes
+  service: name=kube-apiserver state=restarted enabled=yes
 
 - name: restart controller-manager
-  service: name=kube-controller-manager state=restarted enable=yes
+  service: name=kube-controller-manager state=restarted enabled=yes
 
 - name: restart scheduler
-  service: name=kube-scheduler state=restarted enable=yes
+  service: name=kube-scheduler state=restarted enabled=yes
 
 - name: restart flanneld
-  service: name=flanneld state=restarted enable=yes
+  service: name=flanneld state=restarted enabled=yes
