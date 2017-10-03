@@ -7,9 +7,13 @@
     copy: src=./virt7-docker-common-release.repo dest=/etc/yum.repos.d owner=root group=root mode=0644 owner=root group=root mode=0644
   - name: config sshd
     command: sed -i "s/GSSAPIAuthentication yes/GSSAPIAuthentication no/g" /etc/ssh/sshd_config
+    notify:
+      - restart sshd
   - name: config ssh
     command: sed -i "s/GSSAPIAuthentication yes/GSSAPIAuthentication no/g" /etc/ssh/ssh_config
+    notify:
+      - restart sshd
+  handlers
   - name: restart sshd
     service: name=sshd state=restarted enabled=yes
-  - name: stop iptables
-    service: name=iptables state=stopped enabled=no
+  
