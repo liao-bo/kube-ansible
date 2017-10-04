@@ -23,6 +23,11 @@
 # the next time you run ansible.
 #
 ---
+- hosts: masters
+  tasks:
+        - name: install sshpass
+          yum: pkg=sshpass state=latest  
+          
 - hosts: all
   vars:
           ansible_ssh_pass: "{{ lookup('file', '~/rootpassword') }}"
