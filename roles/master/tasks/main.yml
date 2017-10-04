@@ -1,8 +1,12 @@
 ---
+
 - name: config etcd in master
   template: src=etcd_conf.j2 dest=/etc/etcd/etcd.conf
   notify:
     - restart etcd
+- name: config etcd network command
+  template: src=etcd_network_conf.j2 dest=/tmp/etcd_mk_command
+  
 - name: config apiserver in master
   template: src=apiserver_conf.j2 dest=/etc/kubernetes/apiserver
   notify:
