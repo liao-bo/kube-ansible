@@ -10,7 +10,7 @@
 - name: mkdir etcd network fold
   command: etcdctl mkdir {{ etcd_data_fold }}/network
   register: has_fold
-  failed_when: "'Key already exists' not in has_fold.stdout and has_fold.rc != 0"
+  failed_when: "'Key already exists' not in has_fold.stderr and has_fold.rc != 0"
 
 - name: create etcd network configuration
   command: etcdctl mk {{ etcd_data_fold }}/network/config {{ etcd_network_config_js }}
