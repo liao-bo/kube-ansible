@@ -13,7 +13,7 @@
   failed_when: "'Key already exists' not in has_fold.stderr and has_fold.rc != 0"
 
 - name: create etcd network configuration
-  shell: etcdctl mk {{ etcd_data_fold }}/network/config "{ \"Network\": \"172.30.0.0/16\", \"SubnetLen\": 24, \"Backend\": { \"Type\": \"vxlan\" } }"
+  command: /tmp/etcd_mk_command
   register: has_network
   failed_when: "'Key already exists' not in has_network.stderr and has_network.rc != 0"
     
