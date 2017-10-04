@@ -14,6 +14,8 @@
 
 - name: create etcd network configuration
   command: etcdctl mk {{ etcd_data_fold }}/network/config {{ etcd_network_config_js }}
+  register: has_network
+  failed_when: "'Key already exists' not in has_network.stderr and has_network.rc != 0"
     
 - name: restart master daemons
   command: /bin/true
