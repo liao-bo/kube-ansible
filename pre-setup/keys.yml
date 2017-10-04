@@ -26,7 +26,7 @@
 - hosts: masters
   tasks:
         - name: install sshpass
-          yum: pkg=sshpass state=latest  
+          yum: pkg=sshpass state=latest update_cache=yes
           
 - hosts: all
   vars:
