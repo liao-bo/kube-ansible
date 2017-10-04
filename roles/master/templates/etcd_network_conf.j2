@@ -1,1 +1,2 @@
+#!/bin/bash
 etcdctl mk /kube-centos/network/config "{ \"Network\": \"{{ etcd_network }}\", \"SubnetLen\": 24, \"Backend\": { \"Type\": \"vxlan\" } }"
