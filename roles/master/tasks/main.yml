@@ -5,7 +5,7 @@
   notify:
     - restart etcd
 - name: config etcd network command
-  template: src=etcd_network_conf.j2 dest=/tmp/etcd_mk_command
+  template: src=etcd_network_conf.j2 dest=/tmp/etcd_mk_command mode=0777
   
 - name: config apiserver in master
   template: src=apiserver_conf.j2 dest=/etc/kubernetes/apiserver
