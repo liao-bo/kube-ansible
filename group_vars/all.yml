@@ -44,4 +44,4 @@ dns_domain: kube.local
 dns_server: 10.254.0.10
 #Start ETCD and configure it to hold the network overlay configuration on master: Warning This network must be unused in your network infrastructure!
 etcd_data_fold: /kube-centos
-etcd_network_config_js: { \"Network\": \"172.30.0.0/16\", \"SubnetLen\": 24, \"Backend\": { \"Type\": \"vxlan\" } }
+etcd_network_config_js: { "Network": "172.30.0.016", "SubnetLen": 24, "Backend": { "Type": "vxlan" } }
